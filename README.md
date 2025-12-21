@@ -1,29 +1,37 @@
-# Tính năng:
-<a>Chạy cái map lotus courtyard trong ~70s được chắn chắc 500 vàng cho mỗi lần chạy và XP</a>
-<a>Với các drop của boss tự động nhặt qua thư</a>
-# Script để auto game overfield
-Nhấn vào nút Download để tải 
-<p align="center">
-  <a href="https://github.com/NamTranVN2719/auto/releases/download/v1.0.0/automatic9000.zip">
-    <img src="https://img.shields.io/badge/⬇️%20DOWNLOAD-ZIP%20FILE-brightgreen?style=for-the-badge&logo=github" />
-  </a>
-</p>
+# 🎮 Automatic9000 - Auto Game Overfield
 
-# Hướng dẫn sử dụng =)
-<a style="font-weight: bold;">B1: </a>
-Đầu tiên nhấn nút tải bên trên rồi giải nén ra 1 cái thư mục nào đó dễ nhớ
-Ai k biết giải nén file như nào thì xem cái này https://youtu.be/D1AANWLh2ak?si=EJSB7fd43JejsWAI
-À mà tôi k có quảng cáo j đâu nha
-<a style="font-weight: bold;">B2: </a>
-Vì cái script này chỉ hoạt đông với màn hình 1920x1080 nên nếu xài màn khác to hơn thì chỉnh xuống nha
-Còn chỉnh như nào thì google "làm cách nào để chỉnh độ phân giải màn hình" nếu k biết
-<a style="font-weight: bold;">B3: </a>
-Vào game rồi để chế độ toàn màn hình như này
-<img width="1920" height="1080" alt="Discord_QoXdYyLqXb" src="https://github.com/user-attachments/assets/806d61a9-4791-4589-afa1-0c710625fccd" />
+## ✨ Tính năng
 
-<a style="font-weight: bold;">B4: </a>
-Vào game rồi tele ra chỗ này rồi để camera sao cho đè nút W mà k bị rớt là oke
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6819b138-ec59-4599-a0b9-1d2b88684565" />
-<a style="font-weight: bold;">B5: </a>
-Chạy cái file tên là "run" trong cái thư mục nãy bạn giải nén hết đống đó ra
-Rồi mội thứ sẽ được tự động từ đây.
+- **Chạy map Lotus Courtyard trong ~70s** với chắc chắn 500 vàng cho mỗi lần chạy và XP
+- **Tự động nhặt các drop của boss** qua thư
+
+## 📥 Tải xuống
+
+<div align="center">
+
+[![Download ZIP](https://img.shields.io/badge/⬇️%20DOWNLOAD-ZIP%20FILE-brightgreen?style=for-the-badge&logo=github)](https://github.com/NamTranVN2719/auto/releases/download/v1.0.0/automatic9000.zip)
+
+</div>
+
+## 📖 Hướng dẫn sử dụng
+
+### **Bước 1: Tải và giải nén**
+Nhấn nút tải bên trên rồi giải nén ra một thư mục nào đó dễ nhớ. Nếu bạn không biết cách giải nén, xem [hướng dẫn này](https://youtu.be/D1AANWLh2ak?si=EJSB7fd43JejsWAI).
+
+> *Lưu ý: Không có quảng cáo nào trong script này.*
+
+### **Bước 2: Điều chỉnh độ phân giải**
+Script này chỉ hoạt động với màn hình **1920x1080**. Nếu bạn sử dụng màn hình khác, vui lòng chỉnh độ phân giải xuống. Tìm kiếm "làm cách nào để chỉnh độ phân giải màn hình" nếu bạn cần hướng dẫn.
+
+### **Bước 3: Đặt chế độ toàn màn hình**
+Vào game và đặt chế độ toàn màn hình như sau:
+
+![Fullscreen Mode](https://github.com/user-attachments/assets/806d61a9-4791-4589-afa1-0c710625fccd)
+
+### **Bước 4: Đặt vị trí camera**
+Tele đến vị trí trong hình và đặt camera sao cho bạn có thể giữ nút **W** mà không bị rớt:
+
+![Camera Position](https://github.com/user-attachments/assets/6819b138-ec59-4599-a0b9-1d2b88684565)
+
+### **Bước 5: Chạy script**
+Chạy file tên là **"run"** trong thư mục bạn vừa giải nén. Sau đó, mọi thứ sẽ được tự động hóa.
