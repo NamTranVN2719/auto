@@ -1,4 +1,4 @@
-# 🎮 Automatic9000 - Auto Game Overfield
+# 🎮 Auto Game Overfield
 
 ## ✨ Tính năng
 
@@ -18,10 +18,10 @@
 ### **Bước 1: Tải và giải nén**
 Nhấn nút tải bên trên rồi giải nén ra một thư mục nào đó dễ nhớ. Nếu bạn không biết cách giải nén, xem [hướng dẫn này](https://youtu.be/D1AANWLh2ak?si=EJSB7fd43JejsWAI).
 
-> *Lưu ý: Không có quảng cáo nào trong script này.*
+> *Lưu ý: Tui k có quảng cáo j đâu=)*
 
 ### **Bước 2: Điều chỉnh độ phân giải**
-Script này chỉ hoạt động với màn hình **1920x1080**. Nếu bạn sử dụng màn hình khác, vui lòng chỉnh độ phân giải xuống. Tìm kiếm "làm cách nào để chỉnh độ phân giải màn hình" nếu bạn cần hướng dẫn.
+Script này chỉ hoạt động với màn hình **1920x1080**. Nếu bạn sử dụng màn hình khác, vui lòng chỉnh độ phân giải xuống. Tìm kiếm "làm cách nào để chỉnh độ phân giải màn hình" nếu cần=)
 
 ### **Bước 3: Đặt chế độ toàn màn hình**
 Vào game và đặt chế độ toàn màn hình như sau:
@@ -29,9 +29,9 @@ Vào game và đặt chế độ toàn màn hình như sau:
 ![Fullscreen Mode](https://github.com/user-attachments/assets/806d61a9-4791-4589-afa1-0c710625fccd)
 
 ### **Bước 4: Đặt vị trí camera**
-Tele đến vị trí trong hình và đặt camera sao cho bạn có thể giữ nút **W** mà không bị rớt:
+Tele đến vị trí trong hình và đặt camera sao cho giữ nút **W** mà không bị rớt:
 
 ![Camera Position](https://github.com/user-attachments/assets/6819b138-ec59-4599-a0b9-1d2b88684565)
 
 ### **Bước 5: Chạy script**
-Chạy file tên là **"run"** trong thư mục bạn vừa giải nén. Sau đó, mọi thứ sẽ được tự động hóa.
+Chạy file tên là **"run"** trong thư mục bạn vừa giải nén. Sau đó, mọi thứ sẽ được tự động.
