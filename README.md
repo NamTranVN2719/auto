@@ -1,3 +1,5 @@
+Ông dev nào xài cái này thì tôi đố ông làm nó xuống 30s được=)
+> *nếu được thì cho tui ké=)*
 # 🎮 Auto Game Overfield
 
 ## ✨ Tính năng
