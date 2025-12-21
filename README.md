@@ -29,6 +29,15 @@ Vào game và đặt chế độ toàn màn hình như sau:
 ![Fullscreen Mode](https://github.com/user-attachments/assets/806d61a9-4791-4589-afa1-0c710625fccd)
 
 ### **Bước 4: Đặt vị trí camera**
+Dùng team ở ngoài là 1 người
+<img width="975" height="721" alt="image" src="https://github.com/user-attachments/assets/a9877c98-5bbb-4435-b8fc-e8a673a505fc" />
+
+Đặt sẵn team trong Lotus Courtyard như sau:
+Slot 2,3: Dps
+Slot 1: Con nào cũng được lv cao tí 
+ví dụ:
+<img width="949" height="407" alt="image" src="https://github.com/user-attachments/assets/cec1a205-d564-4ff7-9bfd-80c5dbe3923e" />
+
 Tele đến vị trí trong hình vào 1 cái channel k người (thường là channel 4 số) và đặt camera sao cho giữ nút **W** mà không bị rớt:
 
 ![Camera Position](https://github.com/user-attachments/assets/6819b138-ec59-4599-a0b9-1d2b88684565)
