@@ -29,7 +29,7 @@ Vào game và đặt chế độ toàn màn hình như sau:
 ![Fullscreen Mode](https://github.com/user-attachments/assets/806d61a9-4791-4589-afa1-0c710625fccd)
 
 ### **Bước 4: Đặt vị trí camera**
-Tele đến vị trí trong hình và đặt camera sao cho giữ nút **W** mà không bị rớt:
+Tele đến vị trí trong hình vào 1 cái channel k người (thường là channel 4 số) và đặt camera sao cho giữ nút **W** mà không bị rớt:
 
 ![Camera Position](https://github.com/user-attachments/assets/6819b138-ec59-4599-a0b9-1d2b88684565)
 
