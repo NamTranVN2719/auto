@@ -10,7 +10,7 @@
 ## 📥 Tải xuống
 
 <p align="center">
-  <a href="https://github.com/NamTranVN2719/NamTranVN2719.github.io/releases/latest/download/sourcecode.zip">
+  <a href="https://github.com/NamTranVN2719/auto/releases/download/sourcecode.zip">
     <img src="https://img.shields.io/badge/Download-Latest%20Release-blue?style=for-the-badge&logo=github" />
   </a>
 </p>
