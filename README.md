@@ -33,6 +33,7 @@ Vào game và đặt chế độ toàn màn hình như sau:
 Chỉnh đồ họa xuống thấp nhất.
 <img width="1411" height="1721" alt="image" src="https://github.com/user-attachments/assets/6fbe1946-a2c4-4d6c-824d-e36bc21eaabb" />
 Chừa lại setting này:
+Cái này phải để max mới được nha.
 <img width="1384" height="92" alt="Discord_bOkUqWIEWH" src="https://github.com/user-attachments/assets/56fc13b6-4d1a-43e0-80dd-1542a3c49ded" />
 Còn fps thì tùy chỉnh epic nếu muốn nó chạy chính xác nhất, power saving nếu muốn tiết kiệm điện.
 <img width="1396" height="90" alt="Discord_VbEu0mUtLh" src="https://github.com/user-attachments/assets/4101f8f7-539c-4fcb-8416-85c72a323643" />
