@@ -25,11 +25,18 @@ Nhấn nút tải bên trên rồi giải nén ra một thư mục nào đó d�
 ### **Bước 2: Điều chỉnh độ phân giải**
 Script này chỉ hoạt động với màn hình **1920x1080**. Nếu bạn sử dụng màn hình khác, vui lòng chỉnh độ phân giải xuống. Tìm kiếm "làm cách nào để chỉnh độ phân giải màn hình" nếu cần=)
 
-### **Bước 3: Đặt chế độ toàn màn hình**
+### **Bước 3: Setting game**
 Vào game và đặt chế độ toàn màn hình như sau:
 
 ![Fullscreen Mode](https://github.com/user-attachments/assets/806d61a9-4791-4589-afa1-0c710625fccd)
 
+Chỉnh đồ họa xuống thấp nhất.
+<img width="1411" height="1721" alt="image" src="https://github.com/user-attachments/assets/6fbe1946-a2c4-4d6c-824d-e36bc21eaabb" />
+Chừa lại setting này:
+Cái này phải để max mới được nha.
+<img width="1384" height="92" alt="Discord_bOkUqWIEWH" src="https://github.com/user-attachments/assets/56fc13b6-4d1a-43e0-80dd-1542a3c49ded" />
+Còn fps thì tùy chỉnh epic nếu muốn nó chạy chính xác nhất, power saving nếu muốn tiết kiệm điện.
+<img width="1396" height="90" alt="Discord_VbEu0mUtLh" src="https://github.com/user-attachments/assets/4101f8f7-539c-4fcb-8416-85c72a323643" />
 ### **Bước 4: Đặt vị trí camera**
 Dùng team ở ngoài là 1 người<br>
 <img width="975" height="721" alt="image" src="https://github.com/user-attachments/assets/a9877c98-5bbb-4435-b8fc-e8a673a505fc" />
