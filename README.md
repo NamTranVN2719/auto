@@ -9,11 +9,11 @@
 
 ## 📥 Tải xuống
 
-<div align="center">
-
-[![Download ZIP](https://img.shields.io/badge/⬇️%20DOWNLOAD-ZIP%20FILE-brightgreen?style=for-the-badge&logo=github)](https://github.com/NamTranVN2719/auto/releases/download/v1.0.1/automatic9000.zip)
-
-</div>
+<p align="center">
+  <a href="https://github.com/NamTranVN2719/NamTranVN2719.github.io/releases/latest/download/sourcecode.zip">
+    <img src="https://img.shields.io/badge/Download-Latest%20Release-blue?style=for-the-badge&logo=github" />
+  </a>
+</p>
 
 ## 📖 Hướng dẫn sử dụng
 
