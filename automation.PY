@@ -14,41 +14,42 @@ from colorama import Fore, Style, init
 # FPS DETECTION & ADJUSTMENT
 # =======================
 def detect_fps():
-    """Detect current game FPS by sampling frame differences"""
-    frame_times = []
-    samples = 30
+    """
+    Detect current game FPS using OpenCV's high-precision timing.
+    Minimal overhead, very fast.
+    """
+    tick_frequency = cv2.getTickFrequency()
+    frame_count = 0
+    start_tick = cv2.getTickCount()
     
-    for _ in range(samples):
-        start = time.perf_counter()
-        screenshot = pyautogui.screenshot(region=(960, 540, 1, 1))
-        elapsed = time.perf_counter() - start
-        frame_times.append(elapsed)
-        # Use raw sleep without multiplier for accurate FPS detection
-        time.sleep(0.01)
+    # Sample for 0.3 seconds with OpenCV timing
+    while True:
+        frame_count += 1
+        current_tick = cv2.getTickCount()
+        elapsed_seconds = (current_tick - start_tick) / tick_frequency
+        
+        if elapsed_seconds >= 0.3:
+            break
+        time.sleep(0.001)  # Minimal sleep
     
-    avg_frame_time = np.mean(frame_times)
-    estimated_fps = 1.0 / avg_frame_time if avg_frame_time > 0 else 60
+    estimated_fps = frame_count / elapsed_seconds if elapsed_seconds > 0 else 60
     
     # Clamp to reasonable values
-    estimated_fps = max(15, min(estimated_fps, 300))
+    estimated_fps = max(15, min(estimated_fps, 240))
     print(f"{Fore.CYAN}Detected FPS: {estimated_fps:.1f}{Style.RESET_ALL}")
     return estimated_fps
 
-# Get FPS and calculate speed multiplier
+# Get FPS and calculate speed multiplier for dynamic steps
 TARGET_FPS = 60
-current_fps = detect_fps()
-speed_multiplier = TARGET_FPS / current_fps
 
-def adaptive_sleep(duration):
-    """Sleep with FPS-adjusted duration"""
-    time.sleep(duration * speed_multiplier)
+speed_multiplier = 1
+
 
 # Windows API Constants
 MOUSEEVENTF_MOVE = 0x0001
 SCAN_SIDE_RANGE = 200 
 SCAN_STEP = 5 
-LOOP_INTERVAL = 0.01 # Base loop interval at 60fps
-LOOP_INTERVAL_ADJUSTED = LOOP_INTERVAL * speed_multiplier  # Adjust for current FPS
+LOOP_INTERVAL = 0.01 # Constant fast speed
 
 class MOUSEINPUT(ctypes.Structure):
     _fields_ = [("dx", ctypes.c_long), ("dy", ctypes.c_long),
@@ -74,14 +75,15 @@ def get_dynamic_step(diff):
     """
     Adjusts the pixel jump distance based on markers.
     The lower the diff, the smaller the jump.
+    Scales with FPS for consistent movement across different framerates.
     """
-    if diff >= 120: return 70  # Large jumps
-    if diff >= 100:  return 48
-    if diff >= 90:  return 38
-    if diff >= 80:  return 20
-    if diff >= 70:  return 15
-    if diff >= 50:  return 15   # Tiny crawling steps
-    return 1
+    if diff >= 120: return 70 / speed_multiplier  # Large jumps
+    if diff >= 100:  return 60 / speed_multiplier
+    if diff >= 90:  return 50 / speed_multiplier
+    if diff >= 80:  return 40 / speed_multiplier
+    if diff >= 70:  return 30 / speed_multiplier
+    if diff >= 50:  return 20 / speed_multiplier   # Tiny crawling steps
+    return 1 / speed_multiplier
 
 def find_lowest_diff(template_gray, region, current_diff):
     best_diff = current_diff
@@ -93,7 +95,7 @@ def find_lowest_diff(template_gray, region, current_diff):
     for _ in range(0, total_sweep_dist, SCAN_STEP):
         move_mouse_hard(SCAN_STEP, 0)
         current_relative_pos += SCAN_STEP
-        adaptive_sleep(0.005)
+        time.sleep(0.005)
         d = get_current_diff(template_gray, region)
         color = ansi_color_for_diff(best_diff)
 
@@ -136,7 +138,7 @@ def ansi_color_for_diff(diff: float) -> str:
 
 def main():
     CAPTURE_REGION = (717, 0, 518, 284)
-    template = cv2.imread("a.png")
+    template = cv2.imread("a3.png")
     if template is None:
         print("Error: a.png not found")
         return
@@ -151,17 +153,18 @@ def main():
             color = ansi_color_for_diff(diff_value)
             print(f"\rDiff: {color}{diff_value:.2f}{Style.RESET_ALL}", end="", flush=True)
 
-            if diff_value > 50:
+            if diff_value >60:
                 # Get the pixel step based on markers
                 step = get_dynamic_step(diff_value)
                 move_mouse_hard(step, 0)
+                time.sleep(0.05)
             else:
                 # Marker 50 or below reached
                 print(f"\n{Fore.BLUE}Status: PRECISION RANGE (<50).{Style.RESET_ALL}")
                 best_d, offset = find_lowest_diff(template_gray, CAPTURE_REGION, diff_value)
                 return
 
-            time.sleep(LOOP_INTERVAL_ADJUSTED)
+            time.sleep(LOOP_INTERVAL)
 
     except KeyboardInterrupt:
         print("\nStopped.")
