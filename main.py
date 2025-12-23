@@ -15,7 +15,7 @@ from colorama import Fore, Style,init
 # WINDOW FOCUS (UNCHANGED)
 # =======================
 TARGET_TITLE = "OverField"
-CAPTURE_REGION_loaded1 = (58, 1001, 27, 38)
+CAPTURE_REGION_loaded1 = (51, 1013, 13, 24)
 CAPTURE_REGION_loaded2 = (0, 1020, 1920, 60)
 def focus_window(title):
     user32 = ctypes.windll.user32

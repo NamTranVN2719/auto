@@ -9,11 +9,46 @@ import os
 import ctypes
 import colorama
 from colorama import Fore, Style, init
+
+# =======================
+# FPS DETECTION & ADJUSTMENT
+# =======================
+def detect_fps():
+    """Detect current game FPS by sampling frame differences"""
+    frame_times = []
+    samples = 30
+    
+    for _ in range(samples):
+        start = time.perf_counter()
+        screenshot = pyautogui.screenshot(region=(960, 540, 1, 1))
+        elapsed = time.perf_counter() - start
+        frame_times.append(elapsed)
+        # Use raw sleep without multiplier for accurate FPS detection
+        time.sleep(0.01)
+    
+    avg_frame_time = np.mean(frame_times)
+    estimated_fps = 1.0 / avg_frame_time if avg_frame_time > 0 else 60
+    
+    # Clamp to reasonable values
+    estimated_fps = max(15, min(estimated_fps, 300))
+    print(f"{Fore.CYAN}Detected FPS: {estimated_fps:.1f}{Style.RESET_ALL}")
+    return estimated_fps
+
+# Get FPS and calculate speed multiplier
+TARGET_FPS = 60
+current_fps = detect_fps()
+speed_multiplier = TARGET_FPS / current_fps
+
+def adaptive_sleep(duration):
+    """Sleep with FPS-adjusted duration"""
+    time.sleep(duration * speed_multiplier)
+
 # Windows API Constants
 MOUSEEVENTF_MOVE = 0x0001
 SCAN_SIDE_RANGE = 200 
 SCAN_STEP = 5 
-LOOP_INTERVAL = 0.01 # Constant fast speed
+LOOP_INTERVAL = 0.01 # Base loop interval at 60fps
+LOOP_INTERVAL_ADJUSTED = LOOP_INTERVAL * speed_multiplier  # Adjust for current FPS
 
 class MOUSEINPUT(ctypes.Structure):
     _fields_ = [("dx", ctypes.c_long), ("dy", ctypes.c_long),
@@ -58,7 +93,7 @@ def find_lowest_diff(template_gray, region, current_diff):
     for _ in range(0, total_sweep_dist, SCAN_STEP):
         move_mouse_hard(SCAN_STEP, 0)
         current_relative_pos += SCAN_STEP
-        time.sleep(0.005)
+        adaptive_sleep(0.005)
         d = get_current_diff(template_gray, region)
         color = ansi_color_for_diff(best_diff)
 
@@ -126,7 +161,7 @@ def main():
                 best_d, offset = find_lowest_diff(template_gray, CAPTURE_REGION, diff_value)
                 return
 
-            time.sleep(LOOP_INTERVAL)
+            time.sleep(LOOP_INTERVAL_ADJUSTED)
 
     except KeyboardInterrupt:
         print("\nStopped.")
