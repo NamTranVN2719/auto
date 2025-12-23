@@ -171,7 +171,7 @@ counter =0
 while True:
     start = time.perf_counter()
     counter+=1
-    print(f"{Fore.BLUE}============== Starting automation loop #{counter} =============={Style.RESET_ALL}")
+    print(f"{Fore.CYAN}============== Starting automation loop #{counter} =============={Style.RESET_ALL}")
     timeoutt = time.perf_counter()
     restartloop= False
     while True:
@@ -179,12 +179,6 @@ while True:
         if a==1:
             print(f"{Fore.GREEN}Menu loaded{Style.RESET_ALL}")
             break
-        if time.perf_counter()-timeoutt>300:
-            restartloop= True
-        time.sleep(0.5)
-    if restartloop:
-        print(f"{Fore.RED}Timeout reached, restarting automation loop{Style.RESET_ALL}")
-        continue
     key_down(SC_W); time.sleep(2); key_up(SC_W)
     key_down(SC_F); time.sleep(0.2); key_up(SC_F)
     time.sleep(1)
@@ -201,7 +195,7 @@ while True:
     while True:
         a = waitforloadingscreen()
         if a==1:
-            print(f"{Fore.BLUE}Loading finished with anti-automation senario{Style.RESET_ALL}")
+            print(f"{Fore.YELLOW}Loading finished with anti-automation senario{Style.RESET_ALL}")
             process = subprocess.Popen(
                 ["./python/python.exe", "automation.py"],
                 cwd=os.path.dirname(__file__)
@@ -215,12 +209,13 @@ while True:
             time.sleep(5)
             break
         time.sleep(1)
+    time.sleep(0.5)
     key_down(SC_W)
     key_down(SC_SHIFT)
     while True:
         a = waitaftercombat()
         if a==1:
-            print(f"\n{Fore.GREEN}Combat finished{Style.RESET_ALL}")
+            print(f"\n{Fore.LIGHTGREEN_EX}Combat finished{Style.RESET_ALL}")
             break
         time.sleep(0.5)
     key_up(SC_W)
@@ -248,4 +243,4 @@ while True:
 
     time.sleep(2)
     elapsed = time.perf_counter() - start
-    print(f"{Fore.BLUE}>>>>>>>>>> Automation loop #{counter} completed in {elapsed:.2f} seconds <<<<<<<<<<{Style.RESET_ALL}")
+    print(f"{Fore.MAGENTA}>>>>>>>>>> Automation loop #{counter} completed in {elapsed:.2f} seconds <<<<<<<<<<{Style.RESET_ALL}")

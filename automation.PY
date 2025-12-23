@@ -9,7 +9,16 @@ import os
 import ctypes
 import colorama
 from colorama import Fore, Style, init
-
+import mss
+def capture_screen_region(x, y, w, h):
+    with mss.mss() as sct:
+        img = np.array(sct.grab({
+            "top": y,
+            "left": x,
+            "width": w,
+            "height": h
+        }))
+    return img
 # =======================
 # FPS DETECTION & ADJUSTMENT
 # =======================
@@ -66,7 +75,7 @@ def move_mouse_hard(x, y):
     ctypes.windll.user32.SendInput(1, ctypes.pointer(command), ctypes.sizeof(command))
 
 def get_current_diff(template_gray, region):
-    screenshot = pyautogui.screenshot(region=region)
+    screenshot = capture_screen_region(*region)
     frame = np.array(screenshot)
     frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
     return np.mean(cv2.absdiff(template_gray, frame_gray))
@@ -95,18 +104,18 @@ def find_lowest_diff(template_gray, region, current_diff):
     for _ in range(0, total_sweep_dist, SCAN_STEP):
         move_mouse_hard(SCAN_STEP, 0)
         current_relative_pos += SCAN_STEP
-        time.sleep(0.005)
+        time.sleep(0.033)
         d = get_current_diff(template_gray, region)
         color = ansi_color_for_diff(best_diff)
-
-        print(f"\r{Fore.YELLOW}Scanning: Best Diff {color}{best_diff:.4f}{Style.RESET_ALL} at offset {Fore.GREEN}{best_offset_from_start}px. {Style.RESET_ALL}",end="", flush=True)
+        
+        #print(f"\r{Fore.YELLOW}Scanning: Best Diff {color}{best_diff:.4f}{Style.RESET_ALL} at offset {Fore.GREEN}{best_offset_from_start}px. {Style.RESET_ALL}",end="", flush=True)
         if d < best_diff:
             best_diff = d
             best_offset_from_start = current_relative_pos
             
     backtrack = -(current_relative_pos - best_offset_from_start)
     move_mouse_hard(backtrack, 0)
-    print(f"\r{Fore.GREEN}Locked: Best Diff {color}{best_diff:.4f}{Style.RESET_ALL} at offset {Fore.GREEN}{best_offset_from_start}px. {Style.RESET_ALL}",end="\n", flush=True)
+    print(f"\r{Fore.GREEN}Locked: Best Diff {color}{best_diff:.4f}{Style.RESET_ALL} at offset {Fore.GREEN}{best_offset_from_start}px. {Style.RESET_ALL}")
     return best_diff, best_offset_from_start
 
 def clear_screen():
@@ -151,17 +160,20 @@ def main():
         while True:
             diff_value = get_current_diff(template_gray, CAPTURE_REGION)
             color = ansi_color_for_diff(diff_value)
-            print(f"\rDiff: {color}{diff_value:.2f}{Style.RESET_ALL}", end="", flush=True)
+            # print(f"\rDiff: {color}{diff_value:.2f}{Style.RESET_ALL}", end="", flush=True)
 
             if diff_value >60:
                 # Get the pixel step based on markers
                 step = get_dynamic_step(diff_value)
                 move_mouse_hard(step, 0)
-                time.sleep(0.05)
+                time.sleep(0.02)
             else:
                 # Marker 50 or below reached
                 print(f"\n{Fore.BLUE}Status: PRECISION RANGE (<50).{Style.RESET_ALL}")
                 best_d, offset = find_lowest_diff(template_gray, CAPTURE_REGION, diff_value)
+                if best_d > 40:
+                    print(f"{Fore.RED}Could find a better position. Retrying...{Style.RESET_ALL}")
+                    continue
                 return
 
             time.sleep(LOOP_INTERVAL)
