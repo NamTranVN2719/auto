@@ -56,7 +56,7 @@ speed_multiplier = 1
 
 # Windows API Constants
 MOUSEEVENTF_MOVE = 0x0001
-SCAN_SIDE_RANGE = 200 
+SCAN_SIDE_RANGE = 300 
 SCAN_STEP = 5 
 LOOP_INTERVAL = 0.01 # Constant fast speed
 
@@ -95,9 +95,11 @@ def get_dynamic_step(diff):
     return 1 / speed_multiplier
 
 def find_lowest_diff(template_gray, region, current_diff):
+    time.sleep(0.2)  # Small delay before precision scan
     best_diff = current_diff
     best_offset_from_start = 0
     move_mouse_hard(-SCAN_SIDE_RANGE, 0)
+    time.sleep(0.2)
     current_relative_pos = -SCAN_SIDE_RANGE
     total_sweep_dist = SCAN_SIDE_RANGE * 2
     
@@ -114,7 +116,8 @@ def find_lowest_diff(template_gray, region, current_diff):
             best_offset_from_start = current_relative_pos
             
     backtrack = -(current_relative_pos - best_offset_from_start)
-    move_mouse_hard(backtrack, 0)
+    if best_diff < 40:
+        move_mouse_hard(backtrack, 0)
     print(f"\r{Fore.GREEN}Locked: Best Diff {color}{best_diff:.4f}{Style.RESET_ALL} at offset {Fore.GREEN}{best_offset_from_start}px. {Style.RESET_ALL}")
     return best_diff, best_offset_from_start
 
