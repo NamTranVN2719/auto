@@ -64,6 +64,27 @@ KEYEVENTF_KEYUP = 0x0002
 MOUSEEVENTF_LEFTDOWN = 0x0002
 MOUSEEVENTF_LEFTUP = 0x0004
 
+def detect_fps_from_screen(region, sample_time=0.5):
+    last = None
+    frames = 0
+    start = time.perf_counter()
+
+    while time.perf_counter() - start < sample_time:
+        img = pyautogui.screenshot(region=region)
+        gray = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2GRAY)
+
+        if last is not None:
+            if np.mean(cv2.absdiff(last, gray)) > 1:
+                frames += 1
+
+        last = gray
+        time.sleep(0.001)
+
+    fps = frames / sample_time if frames > 0 else 60
+    fps = max(20, min(fps, 240))
+    print(f"{Fore.CYAN}Detected FPS: {fps:.1f}{Style.RESET_ALL}")
+    return fps
+
 # Scan codes
 SC_W = 0x11
 SC_F = 0x21
@@ -168,6 +189,8 @@ def waitaftercombat():
 # =======================
 a = 2
 counter =0
+GAME_REGION = (0, 0, 1920, 1080)
+GAME_FPS = detect_fps_from_screen(GAME_REGION)
 while True:
     start = time.perf_counter()
     counter+=1
@@ -197,7 +220,7 @@ while True:
         if a==1:
             print(f"{Fore.YELLOW}Loading finished with anti-automation senario{Style.RESET_ALL}")
             process = subprocess.Popen(
-                ["./python/python.exe", "automation.py"],
+                ["./python/python.exe", "automation.py",str(GAME_FPS)],
                 cwd=os.path.dirname(__file__)
             )
             process.wait()
