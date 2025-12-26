@@ -10,7 +10,7 @@
 ## 📥 Tải xuống
 
 <p align="center">
-  <a href="https://github.com/NamTranVN2719/auto/releases/download/v1.0.3/1.0.3.zip">
+  <a href="https://github.com/NamTranVN2719/auto/releases/download/v1.0/1.0.4.zip">
     <img src="https://img.shields.io/badge/Download-Latest%20Release-blue?style=for-the-badge&logo=github" />
   </a>
 </p>
